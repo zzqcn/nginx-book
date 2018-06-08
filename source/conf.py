@@ -30,7 +30,8 @@ TITLE = u"Nginx开发从入门到精通"
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 sys.path.append(os.path.abspath(_exts))
 extensions = ['sphinx.ext.todo', 'sphinx.ext.pngmath', 'sphinx.ext.ifconfig', 'number_ref',
-              'number_label', 'literal_include', 'block', 'image', 'basic', "latex_fix"]
+              'number_label', 'literal_include', 'image', 'basic']
+              #'number_label', 'literal_include', 'block', 'image', 'basic', "latex_fix"]
 
 #extensions.append('nohighlight')
 extensions.append('chinese_search')

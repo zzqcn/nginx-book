@@ -1590,7 +1590,7 @@ Nginx中通常调用ngx_http_output_filter函数来发送响应体，它的实�
         return rc;
     }
 
-body filter链调用的原理和header filter一样，和ngx_http_send_header函数不同的是，上面的函数多了一个类型为ngx_chain_t *的参数，因为Nginx实现的是流式的输出，并不用等到整个响应体都生成了才往客户端发送数据，而是产生一部分内容之后将其组织成链表，调用ngx_http_output_filter发送，并且待发送的内容可以在文件中，也可以是在内存中，Nginx会负责将数据流式的，高效的传输出去。而且当发送缓存区满了时，Nginx还会负责保存未发送完的数据，调用者只需要对新数据调用一次ngx_http_output_filter即可。
+body filter链调用的原理和header filter一样，和ngx_http_send_header函数不同的是，上面的函数多了一个类型为ngx_chain_t \*的参数，因为Nginx实现的是流式的输出，并不用等到整个响应体都生成了才往客户端发送数据，而是产生一部分内容之后将其组织成链表，调用ngx_http_output_filter发送，并且待发送的内容可以在文件中，也可以是在内存中，Nginx会负责将数据流式的，高效的传输出去。而且当发送缓存区满了时，Nginx还会负责保存未发送完的数据，调用者只需要对新数据调用一次ngx_http_output_filter即可。
 
 
 ngx_http_copy_filter_module分析
@@ -1736,8 +1736,8 @@ Nginx中，一般filter模块可以header filter函数中根据请求响应头�
 
 .. code:: c
 
-ngx_int_t
-ngx_output_chain(ngx_output_chain_ctx_t *ctx, ngx_chain_t *in)
+    ngx_int_t
+    ngx_output_chain(ngx_output_chain_ctx_t *ctx, ngx_chain_t *in)
 
 分段来看它的代码，下面这段代码是一个快捷路径（short path），也就是说当能直接确定所有的in chain都不需要复制的时，可以直接调用output_filter来交给剩下的filter去处理：
 
@@ -2353,7 +2353,7 @@ complete表示是否buf被完全发送了，也就是sent是否等于send - prev
 
 header表示需要是用writev来发送的buf，也就是only in memory的buf；  
 
-struct iovec *iov, headers[NGX_HEADERS] 这个主要是用于sendfile和writev的参数，这里注意上面header数组保存的就是iovec。
+struct iovec \*iov, headers[NGX_HEADERS] 这个主要是用于sendfile和writev的参数，这里注意上面header数组保存的就是iovec。
 
 
 下面看函数开头的一些初始化代码：
@@ -2980,6 +2980,7 @@ nginx-1.2.0编译时默认是不支持ssl协议的，需要通过编译指令来
 在nginx源码中，ssl相关代码用宏定义变量NGX_HTTP_SSL来控制是否开启。这给我们查找和阅读ssl相关代码带来了方便，如下:
 
 .. code:: c
+
     #if NGX_HTTP_SSL
         /* http ssl code */
     #endif

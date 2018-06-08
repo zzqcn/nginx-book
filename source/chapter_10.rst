@@ -166,6 +166,7 @@ ngx_palloc相对ngx_pnalloc，其会将申请的内存大小向上扩增到NGX_A
 Nginx的内存池不仅用于内存方面的管理，还可以通过`ngx_pool_cleanup_add`来添加内存池释放时的回调函数，以便用来释放自己申请的其他相关资源。
 
 .. code:: c
+
     ngx_pool_cleanup_t *
     ngx_pool_cleanup_add(ngx_pool_t *p, size_t size)
     {

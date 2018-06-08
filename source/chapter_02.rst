@@ -1204,7 +1204,7 @@ ngx_queue_init()的宏定义如下：
 
 ngx_queue_insert_head()和ngx_queue_insert_after()都是往头部添加节点，ngx_queue_insert_tail()是往尾部添加节点。从代码可以看出哨兵节点的 prev 指向链表的尾数据节点，next 指向链表的头数据节点。另外ngx_queue_head()和ngx_queue_last()这两个宏分别可以得到头节点和尾节点。
 
-那假如现在有一个ngx_queue_t *q 指向的是链表中的数据节点的queue成员，如何得到ngx_http_upstream_keepalive_cache_t的数据呢？ nginx提供了ngx_queue_data()宏来得到ngx_http_upstream_keepalive_cache_t的指针，例如：
+那假如现在有一个ngx_queue_t \*q 指向的是链表中的数据节点的queue成员，如何得到ngx_http_upstream_keepalive_cache_t的数据呢？ nginx提供了ngx_queue_data()宏来得到ngx_http_upstream_keepalive_cache_t的指针，例如：
 
 .. code:: c
 
